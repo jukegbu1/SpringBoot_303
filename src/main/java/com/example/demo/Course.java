@@ -8,6 +8,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+//Create table in side database
 @Entity
 public class Course {
 
@@ -15,10 +16,12 @@ public class Course {
     @GeneratedValue(strategy =  GenerationType.AUTO)
     private long id;
 
+    //Must have value at least 4 characters
     @NotNull
     @Size(min=4)
     private String title;
 
+    //String must use size
     @NotNull
     @Size(min=3)
     private String instructor;
@@ -27,6 +30,7 @@ public class Course {
     @Size(min=10)
     private String description;
 
+    //int must use min
     @NotNull
     @Min(3)
     private double credit;

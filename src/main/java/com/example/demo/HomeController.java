@@ -14,6 +14,7 @@ import javax.validation.Valid;
 @Controller
 public class HomeController {
 
+    //don't have to create respository inside methods all the time
     @Autowired
     CourseRepository courseRepository;
 
@@ -23,28 +24,33 @@ public class HomeController {
         return "list";
     }
 
+    //Get user data
     @GetMapping("/add")
     public String courseForm(Model model) {
         model.addAttribute("course", new Course());
         return "courseform";
     }
 
+    //Process user information after they enter
     @PostMapping("/process")
     public String processForm(@Valid Course course,
                               BindingResult result) {
         if (result.hasErrors()) {
             return "courseform";
         }
+        //Afterwards goes back to list page
         courseRepository.save(course);
         return "redirect:/";
 
     }
         @RequestMapping("/detail/{id}")
         public String showCourse(@PathVariable("id") long id, Model model) {
+        //get id inside of course, since unqiue ID
             model.addAttribute("course", courseRepository.findById(id).get());
             return "show";
         }
 
+        //just returns course form so you can return values in daatbase
         @RequestMapping("/update/{id}")
         public String updateCourse(@PathVariable("id") long id, Model model){
             model.addAttribute("course", courseRepository.findById(id).get());

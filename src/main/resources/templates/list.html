@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <th:block th:insert="base :: header"></th:block>
 </head>
 <body>
+<nav th:replace="base :: nav"></nav>
 <a href="/add">Add a Course</a><br/>
-<table>
+<table class="table">
     <tr>
         <th>Title</th>
         <th>Instructor</th>
@@ -23,8 +25,13 @@
         <a th:href="@{/delete/{id}(id=${course.id})}">Delete</a>
 
 
+
     </td>
     </tr>
 </table>
+
+<span th:replace="base ::jslinks">
+
+</span>
 </body>
 </html>
